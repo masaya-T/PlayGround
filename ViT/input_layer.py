@@ -1,20 +1,20 @@
 import torch
 import torch.nn as nn 
 
-class VitInputLayer:
+class VitInputLayer(nn.Module):
     def __init__(self,
                  in_channels:int=3,
                  emb_dim:int=384,
                  num_patch_row:int=2,
                  image_size:int=32
                 ) -> None:
+        super(VitInputLayer, self).__init__()
         self.in_channels = in_channels
         self.emb_dim = emb_dim
         self.num_putch_row = num_patch_row
         self.image_size = image_size
-
         # パッチの数
-        self.num_putch = self.num_putch_row ** 2
+        self.num_patch = self.num_putch_row ** 2
         
         # パッチの大きさ
         self.patch_size = int(self.image_size // self.num_putch_row)
